@@ -2,6 +2,7 @@ package common
 
 import (
 	"context"
+	"os"
 	"testing"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore"
@@ -10,15 +11,16 @@ import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	armNetwork "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/network/armnetwork/v5"
 	"github.com/gruntwork-io/terratest/modules/terraform"
-	"github.com/launchbynttdata/lcaf-component-terratest/lib/azure/login"
 	"github.com/launchbynttdata/lcaf-component-terratest/types"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestNsgRule(t *testing.T, ctx types.TestContext) {
 
-	envVarMap := login.GetEnvironmentVariables()
-	subscriptionID := envVarMap["subscriptionID"]
+	subscriptionID := os.Getenv("ARM_SUBSCRIPTION_ID")
+	if len(subscriptionID) == 0 {
+		t.Fatal("ARM_SUBSCRIPTION_ID is not set in the environment variables ")
+	}
 
 	credential, err := azidentity.NewDefaultAzureCredential(nil)
 	if err != nil {
@@ -37,13 +39,13 @@ func TestNsgRule(t *testing.T, ctx types.TestContext) {
 	}
 
 	t.Run("doesNsgRuleExist", func(t *testing.T) {
-		checkNsgRulesExistence(t, nsgClient, ctx.TerratestTerraformOptions(), ctx)
+		checkNsgRulesExistence(t, nsgClient, ctx)
 	})
 }
 
-func checkNsgRulesExistence(t *testing.T, nsgClient *armNetwork.SecurityGroupsClient, terraformOptions *terraform.Options, ctx types.TestContext) {
-	resourceGroupName := terraform.Output(t, terraformOptions, "resource_group_name")
-	nsgName := terraform.Output(t, terraformOptions, "nsg_name")
+func checkNsgRulesExistence(t *testing.T, nsgClient *armNetwork.SecurityGroupsClient, ctx types.TestContext) {
+	resourceGroupName := terraform.Output(t, ctx.TerratestTerraformOptions(), "resource_group_name")
+	nsgName := terraform.Output(t, ctx.TerratestTerraformOptions(), "nsg_name")
 
 	nsg, err := nsgClient.Get(context.Background(), resourceGroupName, nsgName, nil)
 	if err != nil {
