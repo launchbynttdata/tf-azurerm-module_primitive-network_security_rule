@@ -103,19 +103,13 @@ If `make check` target is successful, developer is good to commit the code to pr
 - runs `conftests`. `conftests` make sure `policy` checks are successful.
 - runs `terratest`. This is integration test suit.
 - runs `opa` tests
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0, <= 1.5.5 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0, <= 1.10.4 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 3.77 |
-
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.92.0 |
 
 ## Modules
 
@@ -131,11 +125,11 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_security_rules"></a> [security\_rules](#input\_security\_rules) | A map of security rules to create | <pre>map(object({<br>    name                                       = string<br>    resource_group_name                        = string<br>    network_security_group_name                = string<br>    description                                = optional(string)<br>    protocol                                   = string<br>    source_port_range                          = optional(number)<br>    source_port_ranges                         = optional(list(number))<br>    destination_port_range                     = optional(number)<br>    destination_port_ranges                    = optional(list(number))<br>    source_address_prefix                      = optional(string)<br>    source_address_prefixes                    = optional(list(string))<br>    source_application_security_group_ids      = optional(list(string))<br>    destination_address_prefix                 = optional(string)<br>    destination_address_prefixes               = optional(list(string))<br>    destination_application_security_group_ids = optional(list(string))<br>    access                                     = string<br>    priority                                   = number<br>    direction                                  = string<br>  }))</pre> | `{}` | no |
+| <a name="input_security_rules"></a> [security\_rules](#input\_security\_rules) | A map of security rules to create | <pre>map(object({<br/>    name                                       = string<br/>    resource_group_name                        = string<br/>    network_security_group_name                = string<br/>    description                                = optional(string)<br/>    protocol                                   = string<br/>    source_port_range                          = optional(number)<br/>    source_port_ranges                         = optional(list(number))<br/>    destination_port_range                     = optional(number)<br/>    destination_port_ranges                    = optional(list(number))<br/>    source_address_prefix                      = optional(string)<br/>    source_address_prefixes                    = optional(list(string))<br/>    source_application_security_group_ids      = optional(list(string))<br/>    destination_address_prefix                 = optional(string)<br/>    destination_address_prefixes               = optional(list(string))<br/>    destination_application_security_group_ids = optional(list(string))<br/>    access                                     = string<br/>    priority                                   = number<br/>    direction                                  = string<br/>  }))</pre> | `{}` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | <a name="output_ids"></a> [ids](#output\_ids) | The IDs of the Network Security Rules. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

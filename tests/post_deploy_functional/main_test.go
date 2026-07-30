@@ -38,5 +38,5 @@ func TestNsgRuleModule(t *testing.T) {
 		}).
 		Build()
 
-	lib.RunSetupTestTeardown(t, *ctx, testimpl.TestNsgRule)
+	lib.RunSetupTestTeardown(t, *ctx, testimpl.TestComposableNsgRule)
 }

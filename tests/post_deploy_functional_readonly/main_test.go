@@ -38,5 +38,5 @@ func TestNsgRuleModule(t *testing.T) {
 		}).
 		Build()
 
-	lib.RunNonDestructiveTest(t, *ctx, testimpl.TestNsgRule)
+	lib.RunNonDestructiveTest(t, *ctx, testimpl.TestComposableNsgRule)
 }
