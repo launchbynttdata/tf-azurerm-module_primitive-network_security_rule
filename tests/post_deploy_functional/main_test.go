@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	testConfigsExamplesFolderDefault = "../../examples"
+	testConfigsExamplesFolderDefault = "../../examples/nsg-rule"
 	infraTFVarFileNameDefault        = "test.tfvars"
 )
 
