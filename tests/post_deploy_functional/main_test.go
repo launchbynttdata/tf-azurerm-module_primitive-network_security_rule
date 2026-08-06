@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	testConfigsExamplesFolderDefault = "../../examples"
+	testConfigsExamplesFolderDefault = "../../examples/nsg-rule"
 	infraTFVarFileNameDefault        = "test.tfvars"
 )
 
@@ -38,5 +38,5 @@ func TestNsgRuleModule(t *testing.T) {
 		}).
 		Build()
 
-	lib.RunSetupTestTeardown(t, *ctx, testimpl.TestNsgRule)
+	lib.RunSetupTestTeardown(t, *ctx, testimpl.TestComposableNsgRule)
 }
