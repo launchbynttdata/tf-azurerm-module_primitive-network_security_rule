@@ -44,8 +44,8 @@ func TestComposableNsgRule(t *testing.T, ctx types.TestContext) {
 }
 
 func checkNsgRulesExistence(t *testing.T, nsgClient *armNetwork.SecurityGroupsClient, ctx types.TestContext) {
-	resourceGroupName := terraform.Output(t, ctx.TerratestTerraformOptions(), "resource_group_name")
-	nsgName := terraform.Output(t, ctx.TerratestTerraformOptions(), "nsg_name")
+	resourceGroupName := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "resource_group_name")
+	nsgName := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "nsg_name")
 
 	nsg, err := nsgClient.Get(context.Background(), resourceGroupName, nsgName, nil)
 	if err != nil {
